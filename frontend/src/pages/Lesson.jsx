@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { tasksAPI } from "../services/api";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import AudioPlayer from "../components/AudioPlayer";
 import ProgressBar from "../components/ProgressBar";
+import { tasksAPI, progressAPI } from "../services/api";
 
 export default function Lesson() {
   const { lessonId } = useParams();
@@ -87,18 +87,29 @@ export default function Lesson() {
     }
   };
 
-  const handleNext = () => {
-    setShowModal(false);
-    setAnswer("");
+  const handleNext = async () => {
+  setShowModal(false);
+  setAnswer("");
 
-    if (currentTaskIndex < tasks.length - 1) {
-      setCurrentTaskIndex(currentTaskIndex + 1);
-    } else {
-      // Lekcija završena
-      alert(`Lesson completed! Your score: ${score}/${tasks.length}`);
-      navigate("/progress");
+  if (currentTaskIndex < tasks.length - 1) {
+    setCurrentTaskIndex(currentTaskIndex + 1);
+  } else {
+    // Koristimo isCorrect koji je već postavljen, score je već ažuriran
+    const finalScore = score; // score je već ažuriran u checkAnswer
+
+    try {
+      await progressAPI.update(lessonId, {
+        score: finalScore,
+        completed: true,
+      });
+    } catch (err) {
+      console.error("Failed to save progress:", err);
     }
-  };
+
+    alert(`Lesson completed! Your score: ${finalScore}/${tasks.length}`);
+    navigate("/progress");
+  }
+};
 
   const renderTask = () => {
     switch (currentTask.type) {

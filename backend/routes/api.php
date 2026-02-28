@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\ProgressController;
+
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -43,6 +45,12 @@ Route::middleware('admin')->group(function () {
     Route::post('/tasks', [TaskController::class, 'store']);
     Route::patch('/tasks/{id}', [TaskController::class, 'update']);
     Route::delete('/tasks/{id}', [TaskController::class, 'destroy']);
+});
+
+// Progress routes (protected)
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/progress', [ProgressController::class, 'index']);
+    Route::post('/progress', [ProgressController::class, 'store']);
 });
 
 });

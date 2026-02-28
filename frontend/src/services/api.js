@@ -51,4 +51,11 @@ export const tasksAPI = {
   delete: (id) => api.delete(`/tasks/${id}`),
 };
 
+// Progress API
+export const progressAPI = {
+  getByUser: () => api.get('/progress'),
+  update: (lessonId, data) => api.post('/progress', {  lesson_id: lessonId,     ...data 
+  }),
+};
+
 export default api;
