@@ -1,11 +1,12 @@
 <?php
-
+use App\Http\Controllers\Api\ImageTranslateController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\Api\ProgressController;
+
 
 
 
@@ -52,6 +53,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/progress', [ProgressController::class, 'index']);
     Route::post('/progress', [ProgressController::class, 'store']);
 });
+Route::post('/image-analyze-translate', [ImageTranslateController::class, 'analyzeAndTranslate'])->withoutMiddleware('auth:sanctum');
 
 });
 
