@@ -1,0 +1,66 @@
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: language_learning_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: language_learning
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - language_app
+
+  # Laravel Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: language_learning_backend
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+      - /var/www/vendor
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: language_learning
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    networks:
+      - language_app
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: language_learning_frontend
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - language_app
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  language_app:
+    driver: bridge
