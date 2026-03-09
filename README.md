@@ -45,8 +45,6 @@ Detaljna uputstva biće dodata nakon dockerizacije projekta.
 - Teodora Đorđević
 - Milica Janković
 
-  ## Pokretanje pomoću Dockera
-
 ## Pokretanje pomoću Dockera
 
 1. Potrebno je imati instaliran Docker i Docker Compose.
