@@ -53,7 +53,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/progress', [ProgressController::class, 'index']);
     Route::post('/progress', [ProgressController::class, 'store']);
 });
-Route::post('/image-analyze-translate', [ImageTranslateController::class, 'analyzeAndTranslate'])->withoutMiddleware('auth:sanctum');
 
 });
 
