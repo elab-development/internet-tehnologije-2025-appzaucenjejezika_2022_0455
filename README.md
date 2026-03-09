@@ -45,5 +45,17 @@ Detaljna uputstva biće dodata nakon dockerizacije projekta.
 - Teodora Đorđević
 - Milica Janković
 
+  ## Pokretanje pomoću Dockera
+
+## Pokretanje pomoću Dockera
+
+1. Potrebno je imati instaliran Docker i Docker Compose.
+2. U root folderu projekta pokrenuti komandu:
+docker-compose up --build
+3. Nakon pokretanja aplikacija će biti dostupna na:
+http://localhost
+Backend API biće dostupan na:
+http://localhost:8000/api
+
 Fakultet organizacionih nauka  
 Predmet: Internet tehnologije# Veb-aplikacija-za-u-enje-jezika
