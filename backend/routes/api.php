@@ -1,11 +1,12 @@
 <?php
-
+use App\Http\Controllers\Api\ImageTranslateController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\Api\ProgressController;
+
 
 
 
