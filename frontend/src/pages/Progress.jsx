@@ -3,6 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 import { progressAPI } from "../services/api";
 import ProgressBar from "../components/ProgressBar";
 import Card from "../components/Card";
+import ProgressChart from "../components/ProgressChart";
 
 export default function Progress() {
   const { user } = useAuth();
@@ -57,6 +58,8 @@ export default function Progress() {
           height={20}
         />
       </div>
+
+      <ProgressChart />
 
       <div style={{
         display: "grid",
