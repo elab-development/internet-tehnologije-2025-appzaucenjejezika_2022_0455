@@ -14,10 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('tasks')->truncate();
         DB::table('lessons')->truncate();
         DB::table('courses')->truncate();
         DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
 
         echo "🗑️  Tables cleared\n";
