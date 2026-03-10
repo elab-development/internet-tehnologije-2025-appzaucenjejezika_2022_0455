@@ -14,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('tasks')->truncate();
+        DB::table('lessons')->truncate();
+        DB::table('courses')->truncate();
+        DB::table('users')->truncate();
         
 
         echo "🗑️  Tables cleared\n";
