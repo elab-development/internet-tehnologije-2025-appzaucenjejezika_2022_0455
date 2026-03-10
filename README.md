@@ -1,59 +1,145 @@
 # Veb aplikacija za učenje jezika
 
-## Opis projekta
-Ova aplikacija omogućava korisnicima da uče strane jezike kroz interaktivne lekcije, zadatke i audio sadržaj. Sistem omogućava rešavanje kvizova, praćenje napretka i administraciju kurseva.
+## Opis aplikacije
+Ova aplikacija predstavlja web sistem za učenje stranih jezika, inspirisan platformama za interaktivno učenje kao što je Duolingo, ali u jednostavnijoj formi.  
+Korisnicima omogućava da kroz kurseve, lekcije i različite tipove zadataka uče strani jezik, prate svoj napredak i koriste audio sadržaj za vežbanje izgovora i prepoznavanja reči.
 
-## Tehnologije
-Frontend:
-- React
-- Tailwind CSS
+Aplikacija podržava:
+- registraciju i prijavu korisnika
+- pregled dostupnih kurseva i lekcija
+- rešavanje zadataka unutar lekcija
+- audio zadatke
+- prikaz napretka korisnika
+- administratorski deo za upravljanje kursevima, lekcijama i zadacima
 
-Backend:
-- Laravel
-- REST API
-- Laravel Sanctum
+## Korišćene tehnologije
 
-Baza podataka:
-- MySQL
+### Frontend
+- React – razvoj korisničkog interfejsa
+- Vite – alat za razvoj i build frontend aplikacije
+- Tailwind CSS – stilizacija korisničkog interfejsa
+- Axios – komunikacija sa backend API-jem
+- Recharts – vizualizacija napretka korisnika
 
-DevOps:
-- Docker
-- GitHub
+### Backend
+- Laravel – razvoj REST API backend sistema
+- Laravel Sanctum – autentifikacija i zaštita ruta
+- Eloquent ORM – rad sa bazom podataka
 
-## Funkcionalnosti
+### Baza podataka
+- MySQL – čuvanje korisnika, kurseva, lekcija, zadataka i napretka
 
-- registracija korisnika
-- prijava i odjava
-- pregled kurseva
-- pregled lekcija
-- rešavanje zadataka
-- audio zadaci
-- praćenje napretka
-- administratorski panel
+### DevOps i alati
+- Docker – kontejnerizacija aplikacije
+- Docker Compose – orkestracija servisa
+- GitHub – verzionisanje i timska saradnja
+- GitHub Actions – CI/CD pipeline
+- Railway – cloud deployment
 
-## Pokretanje aplikacije
+## Struktura projekta
+Projekat je podeljen na dva glavna dela:
+- frontend/ – React aplikacija
+- backend/ – Laravel API
 
-1. Klonirati repozitorijum
-2. Pokrenuti backend server
-3. Pokrenuti frontend aplikaciju
+## Pokretanje aplikacije lokalno
 
-Detaljna uputstva biće dodata nakon dockerizacije projekta.
+### 1. Kloniranje repozitorijuma
+```bash
+git clone <LINK_DO_REPOZITORIJUMA>
+cd <IME_PROJEKTA>
+```
+### 2. Pokretanje backend dela
+Preći u backend direktorijum:
+```bash
+cd backend
+```
+
+Instalirati zavisnosti:
+```bash
+composer install
+```
+
+Kopirati `.env` fajl:
+```bash
+cp .env.example .env
+```
+
+Generisati aplikacijski ključ:
+```bash
+php artisan key:generate
+```
+
+Podesiti konekciju ka MySQL bazi u `.env` fajlu.
+
+Pokrenuti migracije i seedere:
+```bash
+php artisan migrate --seed
+```
+
+Pokrenuti Laravel server:
+```bash
+php artisan serve
+```
+
+Backend će biti dostupan na:
+```
+http://127.0.0.1:8000
+```
+### 3. Pokretanje frontend dela
+Otvoriti novi terminal i preći u frontend direktorijum:
+```bash
+cd frontend
+```
+
+Instalirati zavisnosti:
+```bash
+npm install
+```
+
+Pokrenuti development server:
+```bash
+npm run dev
+```
+
+Frontend će biti dostupan na:
+```
+http://localhost:5173
+```
+
+## Pokretanje aplikacije pomoću Docker-a i Docker Compose-a
+
+Aplikacija je dockerizovana i sastoji se iz tri servisa:
+- mysql
+- backend
+- frontend
+### Pokretanje prvi put
+```bash
+docker-compose up --build
+```
+### Svako naredno pokretanje
+```bash
+docker-compose up
+```
+### Pokretanje u pozadini
+```bash
+docker-compose up -d
+```
+### Zaustavljanje servisa
+```bash
+docker-compose down
+```
+### Zaustavljanje i brisanje volumena
+```bash
+docker-compose down -v
+```
+
+## Način rada sistema
+Frontend komunicira sa backend-om putem REST API-ja koristeći HTTP/HTTPS protokol, dok backend koristi MySQL bazu podataka za čuvanje svih informacija o korisnicima, kursevima, lekcijama, zadacima i napretku.
 
 ## Autori
+- Teodora Đorđević – 2022/0436
+- Ana Đurić – 2022/0455
+- Milica Janković – 2022/0301
 
-- Ana Đurić
-- Teodora Đorđević
-- Milica Janković
-
-## Pokretanje pomoću Dockera
-
-1. Potrebno je imati instaliran Docker i Docker Compose.
-2. U root folderu projekta pokrenuti komandu:
-docker-compose up --build
-3. Nakon pokretanja aplikacija će biti dostupna na:
-http://localhost
-Backend API biće dostupan na:
-http://localhost:8000/api
-
-Fakultet organizacionih nauka  
-Predmet: Internet tehnologije# Veb-aplikacija-za-u-enje-jezika
+## Mentor
+- Aleksandar Joksimović
