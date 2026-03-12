@@ -203,7 +203,7 @@ DB::table('tasks')->insert([
         'type' => 'audio',
         'options' => json_encode(['Hello', 'Goodbye', 'Please', 'Thanks']),
         'correct_answer' => 'Hello',
-        'audio_url' => 'https://pixabay.com/sound-effects/people-hello-278029/',
+        'audio_url' => 'internet-tehnologije-2025-appzaucenjejezika_2022_0455\frontend\public\audio\hello.mp3',
         'created_at' => now(),
         'updated_at' => now()
     ],
