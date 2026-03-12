@@ -46,7 +46,7 @@ class AuthController extends Controller
                 'email' => ['Pogrešan email ili lozinka.'],
             ]);
         }
-
+//komentar
         $user->tokens()->delete();
 
         $token = $user->createToken('api-token')->plainTextToken;
