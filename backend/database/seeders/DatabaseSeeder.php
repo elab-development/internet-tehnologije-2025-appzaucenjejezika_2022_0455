@@ -130,7 +130,7 @@ class DatabaseSeeder extends Seeder
         // ================= TASKS =================
 DB::table('tasks')->insert([
 
-    // ================= GREETINGS =================
+    // ================= ENGLISH - GREETINGS =================
     [
         'lesson_id' => $greetingsId,
         'question' => 'Translate: Zdravo',
@@ -152,7 +152,7 @@ DB::table('tasks')->insert([
         'updated_at' => now()
     ],
 
-    // ================= NUMBERS =================
+    // ================= ENGLISH - NUMBERS =================
     [
         'lesson_id' => $numbersId,
         'question' => 'Translate: deset',
@@ -174,7 +174,7 @@ DB::table('tasks')->insert([
         'updated_at' => now()
     ],
 
-    // ================= FOOD =================
+    // ================= ENGLISH - FOOD =================
     [
         'lesson_id' => $foodId,
         'question' => 'What is "bread" in Serbian?',
@@ -196,7 +196,7 @@ DB::table('tasks')->insert([
         'updated_at' => now()
     ],
 
-    // ================= AUDIO TASK =================
+    // ================= ENGLISH - AUDIO =================
     [
         'lesson_id' => $greetingsId,
         'question' => 'Listen and choose the correct word',
@@ -208,11 +208,75 @@ DB::table('tasks')->insert([
         'updated_at' => now()
     ],
 
+    // ================= SPANISH - SALUDOS =================
+    [
+        'lesson_id' => $saludosId,
+        'question' => 'Translate: Zdravo',
+        'type' => 'translate',
+        'options' => null,
+        'correct_answer' => 'Hola',
+        'audio_url' => null,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'lesson_id' => $saludosId,
+        'question' => 'Choose the correct translation for "Good night"',
+        'type' => 'multiple-choice',
+        'options' => json_encode(['Buenas noches', 'Buenos días', 'Hola', 'Adiós']),
+        'correct_answer' => 'Buenas noches',
+        'audio_url' => null,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'lesson_id' => $saludosId,
+        'question' => 'Listen and choose the correct word',
+        'type' => 'audio',
+        'options' => json_encode(['Hola', 'Adiós', 'Por favor', 'Gracias']),
+        'correct_answer' => 'Hola',
+        'audio_url' => 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+
+    // ================= GERMAN - GRUNDLAGEN =================
+    [
+        'lesson_id' => $grundlagenId,
+        'question' => 'Translate: Zdravo',
+        'type' => 'translate',
+        'options' => null,
+        'correct_answer' => 'Hallo',
+        'audio_url' => null,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'lesson_id' => $grundlagenId,
+        'question' => 'Choose the correct translation for "Good night"',
+        'type' => 'multiple-choice',
+        'options' => json_encode(['Gute Nacht', 'Guten Morgen', 'Hallo', 'Tschüss']),
+        'correct_answer' => 'Gute Nacht',
+        'audio_url' => null,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'lesson_id' => $grundlagenId,
+        'question' => 'Listen and choose the correct word',
+        'type' => 'audio',
+        'options' => json_encode(['Hallo', 'Tschüss', 'Bitte', 'Danke']),
+        'correct_answer' => 'Hallo',
+        'audio_url' => 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+
 ]);
 
     
 
-        echo "✅ Created 5 tasks\n";
+        echo "✅ Created 13 tasks\n";
 
         echo "\n";
         echo "🎉 Database seeded successfully!\n";
@@ -220,7 +284,7 @@ DB::table('tasks')->insert([
         echo "   - 3 Users (admin@test.com, ana@test.com, test@test.com)\n";
         echo "   - 3 Courses (English, Spanish, German)\n";
         echo "   - 5 Lessons\n";
-        echo "   - 5 Tasks\n";
+        echo "   - 13 Tasks\n";
         echo "🔑 Password for all users: password123\n";
     }
 }
