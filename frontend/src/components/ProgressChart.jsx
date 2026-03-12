@@ -19,8 +19,8 @@ export default function ProgressChart() {
   useEffect(() => {
     const fetchProgress = async () => {
       try {
-        const response = await progressAPI.getChart();
-        setData(response.data);
+        const response = await progressAPI.getByUser();
+        setData(response.data.chart || []);
       } catch (err) {
         console.error("Failed to load progress:", err);
         setError("Failed to load progress data");

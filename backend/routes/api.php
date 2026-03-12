@@ -56,7 +56,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // progress routes (auth users)
     Route::get('/progress', [ProgressController::class, 'index']);
-    Route::get('/progress/chart', [ProgressController::class, 'chart']);
     Route::post('/progress', [ProgressController::class, 'store']);
 
 });
