@@ -12,7 +12,6 @@ import {
 import { progressAPI } from "../services/api";
 
 export default function ProgressChart() {
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -20,11 +19,8 @@ export default function ProgressChart() {
   useEffect(() => {
     const fetchProgress = async () => {
       try {
-
-        const response = await progressAPI.getByUser();
-
+        const response = await progressAPI.getChart();
         setData(response.data);
-
       } catch (err) {
         console.error("Failed to load progress:", err);
         setError("Failed to load progress data");
@@ -49,10 +45,7 @@ export default function ProgressChart() {
       <h2>Course Progress Overview</h2>
 
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-        >
+        <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="course" />
           <YAxis domain={[0, 100]} />

@@ -11,26 +11,53 @@ use Illuminate\Http\Request;
 class ProgressController extends Controller
 {
     /**
-     * Get user's progress (for progress chart)
+     * Get overall user's progress
      */
     public function index(Request $request)
     {
         $user = $request->user();
 
-        // Uzmi sve kurseve sa njihovim lekcijama
-        $courses = Course::with('lessons')->get();
+        $completedLessons = Progress::where('user_id', $user->id)
+            ->where('completed', true)
+            ->distinct('lesson_id')
+            ->count('lesson_id');
+
+        $totalLessons = Lesson::count();
+
+        $totalPoints = Progress::where('user_id', $user->id)->sum('score');
+
+        return response()->json([
+            'completed_lessons' => $completedLessons,
+            'total_lessons'     => $totalLessons,
+            'total_points'      => (int) $totalPoints,
+            'current_streak'    => 0,
+        ]);
+    }
+
+    /**
+     * Get chart data by course
+     */
+    public function chart(Request $request)
+    {
+        $user = $request->user();
+
+        $courses = Course::all();
 
         $data = $courses->map(function ($course) use ($user) {
 
-            $lessonIds = $course->lessons->pluck('id');
+            $lessonIds = Lesson::where('course_id', $course->id)->pluck('id');
 
             $totalLessons = $lessonIds->count();
 
-            $completedLessons = Progress::where('user_id', $user->id)
-                ->where('completed', true)
-                ->whereIn('lesson_id', $lessonIds)
-                ->distinct('lesson_id')
-                ->count('lesson_id');
+            $completedLessons = 0;
+
+            if ($totalLessons > 0) {
+                $completedLessons = Progress::where('user_id', $user->id)
+                    ->where('completed', true)
+                    ->whereIn('lesson_id', $lessonIds)
+                    ->distinct('lesson_id')
+                    ->count('lesson_id');
+            }
 
             $progress = $totalLessons > 0
                 ? round(($completedLessons / $totalLessons) * 100)

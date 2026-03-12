@@ -54,7 +54,10 @@ export const tasksAPI = {
 // Progress API
 export const progressAPI = {
   getByUser: () => api.get('/progress'),
-  update: (lessonId, data) => api.post('/progress', {  lesson_id: lessonId,     ...data 
+  getChart: () => api.get('/progress/chart'),
+  update: (lessonId, data) => api.post('/progress', {
+    lesson_id: lessonId,
+    ...data
   }),
 };
 
